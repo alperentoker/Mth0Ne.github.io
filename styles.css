@@ -17,16 +17,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Matrix Background */
-#matrix-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.1;
-}
+
 
 /* Container */
 .container {
@@ -577,100 +568,7 @@ section {
     line-height: 1.6;
 }
 
-/* Projects Section */
-.projects {
-    background: #0a0a0a;
-}
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-}
-
-.project-card {
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid #00ff41;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
-}
-
-.project-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.project-image img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image img {
-    transform: scale(1.1);
-}
-
-.project-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-overlay {
-    opacity: 1;
-}
-
-.project-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.project-content {
-    padding: 25px;
-}
-
-.project-content h3 {
-    color: #ffffff;
-    font-size: 1.3em;
-    margin-bottom: 10px;
-}
-
-.project-content p {
-    color: #cccccc;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tag {
-    background: rgba(0, 255, 65, 0.2);
-    color: #00ff41;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.8em;
-    border: 1px solid #00ff41;
-}
 
 /* Contact Section */
 .contact {
@@ -864,10 +762,6 @@ section {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
-    }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
     }
 }
 

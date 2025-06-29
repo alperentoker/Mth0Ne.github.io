@@ -3,71 +3,8 @@ if (location.protocol !== 'https:' && location.hostname !== 'localhost' && locat
     location.replace('https:' + window.location.href.substring(window.location.protocol.length));
 }
 
-// Matrix Rain Animation
-class MatrixRain {
-    constructor() {
-        this.canvas = document.getElementById('matrix-canvas');
-        this.ctx = this.canvas.getContext('2d');
-        this.chars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネへメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        this.charArray = this.chars.split('');
-        this.fontSize = 14;
-        this.columns = 0;
-        this.drops = [];
-        
-        this.init();
-        this.animate();
-    }
-    
-    init() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-        this.columns = this.canvas.width / this.fontSize;
-        
-        // Initialize drops
-        for (let i = 0; i < this.columns; i++) {
-            this.drops[i] = Math.random() * -100;
-        }
-    }
-    
-    draw() {
-        // Semi-transparent black to create fade effect
-        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        // Matrix text
-        this.ctx.fillStyle = '#00ff41';
-        this.ctx.font = `${this.fontSize}px monospace`;
-        
-        for (let i = 0; i < this.drops.length; i++) {
-            const text = this.charArray[Math.floor(Math.random() * this.charArray.length)];
-            this.ctx.fillText(text, i * this.fontSize, this.drops[i] * this.fontSize);
-            
-            if (this.drops[i] * this.fontSize > this.canvas.height && Math.random() > 0.975) {
-                this.drops[i] = 0;
-            }
-            this.drops[i]++;
-        }
-    }
-    
-    animate() {
-        this.draw();
-        requestAnimationFrame(() => this.animate());
-    }
-    
-    resize() {
-        this.init();
-    }
-}
-
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Matrix Rain
-    const matrix = new MatrixRain();
-    
-    // Resize handler
-    window.addEventListener('resize', () => {
-        matrix.resize();
-    });
     
     // Navigation Menu Toggle
     const hamburger = document.querySelector('.hamburger');
