@@ -485,6 +485,98 @@ section {
     line-height: 1.5;
 }
 
+/* Education Section */
+.education {
+    padding: 100px 0;
+    background: #0f0f0f;
+}
+
+.education-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.education-item {
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.education-item:hover {
+    border-color: #00ff41;
+    box-shadow: 0 5px 20px rgba(0, 255, 65, 0.2);
+}
+
+.education-info h3 {
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.education-info h4 {
+    color: #00ff41;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.education-date {
+    color: #cccccc;
+    font-style: italic;
+}
+
+/* Certifications Section */
+.certifications {
+    padding: 100px 0;
+    background: #0a0a0a;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.certification-card {
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.certification-card:hover {
+    border-color: #00ff41;
+    box-shadow: 0 5px 20px rgba(0, 255, 65, 0.2);
+    transform: translateY(-5px);
+}
+
+.certification-content h3 {
+    color: #ffffff;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.certification-date {
+    color: #00ff41;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.certification-id {
+    color: #888888;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.certification-content p:last-child {
+    color: #cccccc;
+    line-height: 1.6;
+}
+
 /* Projects Section */
 .projects {
     background: #0a0a0a;
