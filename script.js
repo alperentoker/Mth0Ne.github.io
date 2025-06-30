@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
             ${isMobileNotification ? '' : 'backdrop-filter: blur(10px);'}
             border: 1px solid rgba(100, 255, 218, 0.3);
-            z-index: 10000;
+            z-index: 1002;
             font-weight: 500;
             max-width: ${isMobileNotification ? 'none' : '400px'};
             transform: translateX(100%);
@@ -261,11 +261,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Hide/show navbar on scroll
+        // Hide/show navbar on scroll (with z-index preservation)
         if (scrollTop > lastScrollTop && scrollTop > 200) {
             navbar.style.transform = 'translateY(-100%)';
+            navbar.style.zIndex = '1001';
         } else {
             navbar.style.transform = 'translateY(0)';
+            navbar.style.zIndex = '1001';
         }
         
         lastScrollTop = scrollTop;

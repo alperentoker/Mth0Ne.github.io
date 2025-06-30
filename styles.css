@@ -90,7 +90,7 @@ body::before {
     background: rgba(10, 25, 47, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-    z-index: 1000;
+    z-index: 1001; /* Increased to ensure it stays on top */
     transition: all 0.3s ease;
 }
 
@@ -174,8 +174,9 @@ body::before {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 120px 0 80px;
+    padding: 140px 0 80px; /* Increased top padding to prevent navbar overlap */
     position: relative;
+    z-index: 1; /* Ensure hero stays below navbar */
 }
 
 .hero-content {
@@ -277,6 +278,8 @@ body::before {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(20px);
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 2; /* Keep below navbar but above background */
 }
 
 .profile-card:hover {
@@ -318,6 +321,8 @@ body::before {
 /* Section Styles */
 section {
     padding: 100px 0;
+    position: relative;
+    z-index: 1; /* Ensure all sections stay below navbar */
 }
 
 .section-title {
@@ -908,7 +913,7 @@ section {
         justify-content: center;
         align-items: center;
         transition: left 0.3s ease;
-        z-index: 999;
+        z-index: 1000; /* Just below navbar */
     }
     
     .nav-menu.active {
@@ -916,7 +921,7 @@ section {
     }
     
     .hero {
-        padding: 100px 0 60px;
+        padding: 110px 0 60px; /* Increased top padding for mobile navbar */
         min-height: auto;
     }
     
@@ -1088,6 +1093,10 @@ section {
 
 /* Extra small devices */
 @media (max-width: 320px) {
+    .hero {
+        padding: 100px 0 50px; /* Adjusted for very small screens */
+    }
+    
     .hero-title {
         font-size: 1.6em;
     }
