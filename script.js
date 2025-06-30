@@ -181,11 +181,13 @@ document.addEventListener('DOMContentLoaded', function() {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? '#00ff41' : type === 'error' ? '#ff4444' : '#00ccff'};
-            color: #000000;
+            background: ${type === 'success' ? '#64FFDA' : type === 'error' ? '#ff6b6b' : '#007BFF'};
+            color: ${type === 'success' || type === 'info' ? '#0A192F' : '#FFFFFF'};
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.3);
             z-index: 10000;
             font-weight: 500;
             max-width: 400px;
@@ -224,11 +226,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         if (scrollTop > 100) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.98)';
-            navbar.style.backdropFilter = 'blur(15px)';
+            navbar.style.background = 'rgba(10, 25, 47, 0.98)';
+            navbar.style.backdropFilter = 'blur(20px)';
         } else {
-            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
+            navbar.style.background = 'rgba(10, 25, 47, 0.95)';
+            navbar.style.backdropFilter = 'blur(15px)';
         }
         
         // Hide/show navbar on scroll
@@ -263,44 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Random matrix characters in code block
-    const codeBlock = document.querySelector('.code-content pre code');
-    if (codeBlock) {
-        const originalCode = codeBlock.innerHTML;
-        let isGlitching = false;
-        
-        codeBlock.addEventListener('mouseenter', () => {
-            if (!isGlitching) {
-                isGlitching = true;
-                glitchCode();
-            }
-        });
-        
-        function glitchCode() {
-            const characters = '01アァカサタナハマヤャラワガザダバパ';
-            let iterations = 0;
-            
-            const interval = setInterval(() => {
-                codeBlock.innerHTML = originalCode
-                    .split('')
-                    .map((char, index) => {
-                        if (index < iterations) {
-                            return originalCode[index];
-                        }
-                        return characters[Math.floor(Math.random() * characters.length)];
-                    })
-                    .join('');
-                
-                iterations += 1/3;
-                
-                if (iterations >= originalCode.length) {
-                    clearInterval(interval);
-                    codeBlock.innerHTML = originalCode;
-                    isGlitching = false;
-                }
-            }, 30);
-        }
-    }
+
     
     // Project card hover effects
     const projectCards = document.querySelectorAll('.project-card');
@@ -319,30 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('loaded');
     });
     
-    // Easter egg: Konami code
-    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-    let konamiIndex = 0;
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.keyCode === konamiCode[konamiIndex]) {
-            konamiIndex++;
-            if (konamiIndex === konamiCode.length) {
-                activateMatrixMode();
-                konamiIndex = 0;
-            }
-        } else {
-            konamiIndex = 0;
-        }
-    });
-    
-    function activateMatrixMode() {
-        document.body.style.filter = 'hue-rotate(180deg) saturate(2)';
-        showNotification('Matrix Mode Activated! 🤖', 'success');
-        
-        setTimeout(() => {
-            document.body.style.filter = '';
-        }, 10000);
-    }
+
     
     // Performance optimization: throttle scroll events
     function throttle(func, limit) {
