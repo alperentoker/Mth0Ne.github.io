@@ -37,23 +37,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Typing animation for hero title
+    // Typing animation for hero title (optimized for mobile)
     const typingText = document.querySelector('.typing-text');
     if (typingText) {
         const text = typingText.textContent;
-        typingText.textContent = '';
-        let i = 0;
+        const isMobileDevice = window.innerWidth <= 768 || 'ontouchstart' in window;
         
-        function typeWriter() {
-            if (i < text.length) {
-                typingText.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
+        if (isMobileDevice) {
+            // Faster animation on mobile to reduce battery usage
+            typingText.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    typingText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50); // Faster on mobile
+                }
             }
+            
+            // Start typing animation after a shorter delay on mobile
+            setTimeout(typeWriter, 500);
+        } else {
+            // Standard animation on desktop
+            typingText.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    typingText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
         }
-        
-        // Start typing animation after a short delay
-        setTimeout(typeWriter, 1000);
     }
     
     // Skill progress bar animation
@@ -176,23 +195,26 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        // Add notification styles
+        // Add notification styles (mobile optimized)
+        const isMobileNotification = window.innerWidth <= 768;
         notification.style.cssText = `
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: ${isMobileNotification ? '10px' : '20px'};
+            right: ${isMobileNotification ? '10px' : '20px'};
+            left: ${isMobileNotification ? '10px' : 'auto'};
             background: ${type === 'success' ? '#64FFDA' : type === 'error' ? '#ff6b6b' : '#007BFF'};
             color: ${type === 'success' || type === 'info' ? '#0A192F' : '#FFFFFF'};
-            padding: 15px 20px;
+            padding: ${isMobileNotification ? '12px 16px' : '15px 20px'};
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            ${isMobileNotification ? '' : 'backdrop-filter: blur(10px);'}
             border: 1px solid rgba(100, 255, 218, 0.3);
             z-index: 10000;
             font-weight: 500;
-            max-width: 400px;
+            max-width: ${isMobileNotification ? 'none' : '400px'};
             transform: translateX(100%);
             transition: transform 0.3s ease;
+            font-size: ${isMobileNotification ? '0.9em' : '1em'};
         `;
         
         document.body.appendChild(notification);
@@ -218,19 +240,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    // Navbar scroll effect
+    // Navbar scroll effect (optimized for mobile)
     const navbar = document.querySelector('.navbar');
     let lastScrollTop = 0;
+    const isMobile = window.innerWidth <= 768;
     
-    window.addEventListener('scroll', () => {
+    const throttledNavbarScroll = throttle(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         if (scrollTop > 100) {
             navbar.style.background = 'rgba(10, 25, 47, 0.98)';
-            navbar.style.backdropFilter = 'blur(20px)';
+            // Disable backdrop-filter on mobile for performance
+            if (!isMobile) {
+                navbar.style.backdropFilter = 'blur(20px)';
+            }
         } else {
             navbar.style.background = 'rgba(10, 25, 47, 0.95)';
-            navbar.style.backdropFilter = 'blur(15px)';
+            if (!isMobile) {
+                navbar.style.backdropFilter = 'blur(15px)';
+            }
         }
         
         // Hide/show navbar on scroll
@@ -241,16 +269,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         lastScrollTop = scrollTop;
-    });
+    }, 16);
     
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
+    window.addEventListener('scroll', throttledNavbarScroll);
+    
+    // Parallax effect for hero section (disabled on mobile for performance)
+    if (window.innerWidth > 768) {
+        const throttledParallax = throttle(() => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        }, 16);
+        window.addEventListener('scroll', throttledParallax);
+    }
     
     // Add glitch effect to logo on hover
     const logo = document.querySelector('.logo-text');
@@ -267,17 +300,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     
-    // Project card hover effects
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px) rotateX(5deg)';
+    // Project card hover effects (disabled on mobile for performance)
+    if (window.innerWidth > 768) {
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) rotateX(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateX(0deg)';
+            });
         });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) rotateX(0deg)';
-        });
-    });
+    }
     
     // Add loading animation
     window.addEventListener('load', () => {
