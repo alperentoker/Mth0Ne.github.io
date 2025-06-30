@@ -206,16 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 40);
     }
     
-    // Parallax effect for hero section
-    window.addEventListener('scroll', throttle(() => {
-        const scrolled = window.pageYOffset;
-        const heroElements = document.querySelectorAll('.hero-content');
-        
-        heroElements.forEach(element => {
-            const speed = 0.5;
-            element.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-    }, 16));
+    // Remove problematic parallax effect that causes content overlap
+    // Parallax effect disabled to prevent sections from overlapping
     
     // Enhanced contact form handling
     const contactForm = document.getElementById('contactForm');
@@ -384,6 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .navbar.scrolled {
             background: rgba(10, 25, 47, 0.98) !important;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 1000 !important;
         }
         
         body.menu-open {
