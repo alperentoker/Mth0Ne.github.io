@@ -10,6 +10,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Yazılım Geliştirme ve Raporlama Mühendisi Alperen Toker'in kişisel portfolyosu. C#, ASP.NET Core, Python ve Power BI yeteneklerimi ve projelerimi keşfedin.">
     <title>Alperen Toker - Yazılım Geliştirme ve Raporlama Mühendisi</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -27,6 +28,7 @@
                 <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
                 <li><a href="#about" class="nav-link">Hakkımda</a></li>
                 <li><a href="#skills" class="nav-link">Yetenekler</a></li>
+                <li><a href="#projects" class="nav-link">Projeler</a></li>
                 <li><a href="#experience" class="nav-link">Deneyim</a></li>
                 <li><a href="#education" class="nav-link">Eğitim</a></li>
                 <li><a href="#certifications" class="nav-link">Sertifikalar</a></li>
@@ -64,6 +66,10 @@
                     <a href="#experience" class="btn btn-secondary">
                         <i class="fas fa-briefcase"></i>
                         Deneyimlerimi Gör
+                    </a>
+                    <a href="/Alperen_Toker_CV.pdf" download class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        CV'mi İndir
                     </a>
                 </div>
                 <div class="hero-stats">
@@ -272,6 +278,84 @@
         </div>
     </section>
 
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projelerim</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>SmartBist - Akıllı Borsa İstanbul Portföy Yönetim Sistemi</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Mth0Ne/smartbist" target="_blank" aria-label="SmartBist GitHub Repository">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Borsa İstanbul (BIST) için geliştirilmiş akıllı portföy yönetim sistemi. 
+                            TensorFlow ve LSTM deep learning modelleri kullanarak hisse senedi fiyat 
+                            tahminleri yapan ve yatırımcıları bilgilendiren kapsamlı bir web uygulaması.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">ASP.NET Core MVC</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">LSTM</span>
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">MSSQL</span>
+                        </div>
+                        <div class="project-features">
+                            <h4>Özellikler:</h4>
+                            <ul>
+                                <li>Gerçek zamanlı hisse senedi veri analizi</li>
+                                <li>LSTM modeli ile fiyat tahminleri</li>
+                                <li>Portföy performans takibi</li>
+                                <li>Risk analizi ve raporlama</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Personel Maaş Yönetim Sistemi</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Mth0Ne/personel-maas-sistemi" target="_blank" aria-label="Personel Maaş Sistemi GitHub Repository">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Şirketler için geliştirilmiş kapsamlı personel maaş yönetim sistemi. 
+                            Çalışan bilgileri, maaş hesaplamaları, bordro oluşturma ve raporlama 
+                            özelliklerini içeren modern bir web uygulaması.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">ASP.NET Core MVC</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">MSSQL</span>
+                            <span class="tech-tag">Entity Framework</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <div class="project-features">
+                            <h4>Özellikler:</h4>
+                            <ul>
+                                <li>Personel bilgi yönetimi</li>
+                                <li>Otomatik maaş hesaplama</li>
+                                <li>Bordro oluşturma ve yazdırma</li>
+                                <li>Özlük dosyası takibi</li>
+                                <li>Raporlama ve analiz</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
@@ -384,9 +468,9 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/alperentoker/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Mth0Ne" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.instagram.com/alperenntoker/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/alperentoker/" target="_blank" title="LinkedIn" aria-label="LinkedIn Profilim"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Mth0Ne" target="_blank" title="GitHub" aria-label="GitHub Profilim"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/alperenntoker/" target="_blank" title="Instagram" aria-label="Instagram Profilim"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
