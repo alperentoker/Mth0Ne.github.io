@@ -351,6 +351,9 @@ body::before {
 /* Terminal Styling */
 .hero-visual {
     animation: fadeInUp 1s ease-out 0.6s both;
+    position: relative;
+    z-index: 1;
+    contain: layout style paint;
 }
 
 .code-terminal {
@@ -360,6 +363,10 @@ body::before {
     overflow: hidden;
     border: 1px solid rgba(100, 255, 218, 0.2);
     position: relative;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+    isolation: isolate;
 }
 
 .code-terminal::before {
@@ -1564,6 +1571,8 @@ section > .container {
     .code-terminal {
         max-width: 400px;
         margin: 0 auto;
+        transform: translateZ(0);
+        backface-visibility: hidden;
     }
     
     .terminal-body {
@@ -1626,6 +1635,8 @@ section > .container {
     .code-terminal {
         max-width: 300px;
         margin: 0 auto;
+        transform: translateZ(0);
+        backface-visibility: hidden;
     }
     
     .terminal-body {
