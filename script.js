@@ -151,8 +151,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(animateSkillBars, 300);
                 }
                 
-                // Counter animation for stats with enhanced effects
-                if (entry.target.classList.contains('stat-number')) {
+                // Counter animation for stats with enhanced effects (except static stats)
+                if (entry.target.classList.contains('stat-number') && !entry.target.classList.contains('static-stat')) {
                     animateCounter(entry.target);
                 }
                 
@@ -185,8 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (section) observer.observe(section);
     });
     
-    // Observe stat numbers with enhanced animations
-    const statNumbers = document.querySelectorAll('.stat-number');
+    // Observe stat numbers with enhanced animations (exclude static stats)
+    const statNumbers = document.querySelectorAll('.stat-number:not(.static-stat)');
     statNumbers.forEach(stat => observer.observe(stat));
     
     // Konami Code Easter Egg
