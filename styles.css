@@ -295,30 +295,40 @@ genel bileşen sınıfları bulunmaktadır.
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
 }
-
-/* Hero Section */
-/* Hero Section */
+/* Hero Section - KESİN ÇÖZÜM */
 .hero {
-    min-height: 100vh;
-    display: grid; /* Flex yerine Grid kullanıyoruz */
-    place-items: center; /* Dikey ve yatay ortalamanın en modern yolu */
-    padding-top: 60px; /* Sabit navigasyon çubuğu için boşluk */
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-md);
-    padding-bottom: var(--spacing-lg);
+    min-height: 100vh;        /* Ekranın en azından tamamını kaplamasını sağlar. */
+    box-sizing: border-box;   /* Padding'in yüksekliğe dahil edilmesini garanti eder. */
+    
+    /* * EN ÖNEMLİ DÜZELTME:
+     * Sabit navbar (60px) ve ekstra güvenli bir boşluk (40px) ekleyerek toplamda 100px'lik bir üst boşluk veriyoruz.
+     * Bu, içeriğin navbar altında kalmasını kesinlikle engeller.
+     */
+    padding-top: 100px;
+    
+    /* Alt ve yan boşluklar */
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    
+    /*
+     * DİKKAT: Dikey ortalama yapan 'display: flex', 'align-items: center', 'justify-content: center' 
+     * ve 'display: grid' gibi tüm özellikler kaldırıldı. Bu, mobil kaydırma sorununu yaratan ana nedendi.
+     * Artık içerik doğal akışında yukarıdan aşağıya doğru sıralanacak.
+     */
 }
-
-/* Hero Content */
+/* Hero Content - KESİN ÇÖZÜM */
 .hero-content {
     width: 100%;
     max-width: 800px;
-    text-align: center; /* İçindeki her şeyin ortalanmasını sağlar */
-    display: flex; /* İçeriğin dikey olarak sıralanması için */
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-md); /* Elementler arasına boşluk ekler */
+    
+    /* Yatayda ortalamak için en güvenilir yöntem. */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* İçindeki metinleri ve diğer block olmayan elementleri ortalamak için. */
+    text-align: center;
 }
-
 .hero-main,
 .hero-badge,
 .hero-title,
