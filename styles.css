@@ -38,10 +38,13 @@
     --font-size-hero: clamp(2rem, 6vw, 3.5rem);
     
     /* Simple Spacing */
+    --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+    --spacing-3xl: 6rem;
     
     /* Border Radius */
     --radius-sm: 8px;
@@ -975,6 +978,7 @@ section:nth-child(even) {
     font-weight: 500;
     border: 1px solid rgba(0, 123, 255, 0.2);
     transition: all 0.3s ease;
+    margin-bottom: var(--spacing-xs);
 }
 
 .tech-tag:hover {
@@ -1267,6 +1271,8 @@ section:nth-child(even) {
     border-radius: var(--radius-md);
     transition: all 0.3s ease;
     min-height: var(--touch-target-min);
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
 }
 
 .contact-item:hover,
