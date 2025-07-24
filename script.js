@@ -298,11 +298,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroTitle = document.querySelector('.title-name');
         if (heroTitle) {
             heroTitle.classList.add('glitch');
-            heroTitle.setAttribute('data-text', heroTitle.textContent);
             setTimeout(() => {
                 heroTitle.classList.remove('glitch');
-                heroTitle.removeAttribute('data-text');
-            }, 3000);
+            }, 1000);
         }
         
         // Show fun message
@@ -442,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const subject = document.getElementById('subject').value.trim();
             const message = document.getElementById('message').value.trim();
             
-            // Enhanced validation with better error messages
+            // Form validation
             if (!name) {
                 showNotification('Lütfen adınızı girin.', 'error');
                 document.getElementById('name').focus();
