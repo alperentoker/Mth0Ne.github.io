@@ -829,27 +829,11 @@ document.addEventListener('DOMContentLoaded', function() {
          }
     `;
     document.head.appendChild(style);
-    
-});
 
-// Service Worker Registration (for PWA capabilities)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log('Service Worker registered'))
-            .catch(() => console.log('Service Worker registration failed'));
-    });
-}
-
-// Simple utility
-const utils = {
-    debounce: (func, wait) => {
-        let timeout;
-        return function(...args) {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
-        };
+    // Update footer year dynamically
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
     }
-};
 
-window.utils = utils; 
+}); 
