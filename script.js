@@ -1,839 +1,830 @@
-// HTTPS Redirect
-if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-    location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+// =================================
+// MODERN PORTFOLIO JAVASCRIPT
+// Professional animations and interactions
+// =================================
+
+class PortfolioApp {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.setupEventListeners();
+    this.createSVGAnimation();
+    this.setupScrollAnimations();
+    this.setupFloatingElements(); 
+    this.generateProjectCards();
+    this.setupFormHandling();
+    this.setupMobileMenu();
+    this.setupSmoothScrolling();
+    this.setupHeaderScrollEffect();
+    
+    // Initialize animations with a slight delay for better UX
+    setTimeout(() => {
+      this.triggerInitialAnimations();
+    }, 100);
+  }
+
+  setupEventListeners() {
+    // Resize handler for responsive animations
+    window.addEventListener('resize', this.debounce(() => {
+      this.handleResize();
+    }, 250));
+
+    // Scroll handler for parallax and other effects
+    window.addEventListener('scroll', this.throttle(() => {
+      this.handleScroll();
+    }, 16));
+
+    // Enhanced button interactions
+    this.setupButtonAnimations();
+  }
+
+  // =================================
+  // SVG ANIMATION SYSTEM
+  // =================================
+  createSVGAnimation() {
+    const svgContainer = document.querySelector('.svg-animation');
+    if (!svgContainer) return;
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
+    svg.setAttribute('viewBox', '0 0 300 300');
+    svg.classList.add('hero-svg');
+
+    // Create animated elements
+    const elements = [
+      this.createAnimatedCircle(150, 150, 100, '#3b82f6', 0.1, 6),
+      this.createAnimatedCircle(150, 150, 75, '#2563eb', 0.15, -8),
+      this.createAnimatedPath(),
+      this.createFloatingDots(),
+      this.createPulsingCenter()
+    ];
+
+    elements.forEach(el => svg.appendChild(el));
+    svgContainer.appendChild(svg);
+
+    // Add CSS animation class
+    svg.classList.add('svg-fade-in');
+  }
+
+  createAnimatedCircle(cx, cy, r, color, opacity, duration) {
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', cx);
+    circle.setAttribute('cy', cy);
+    circle.setAttribute('r', r);
+    circle.setAttribute('fill', 'none');
+    circle.setAttribute('stroke', color);
+    circle.setAttribute('stroke-width', '2');
+    circle.setAttribute('stroke-opacity', opacity);
+    circle.setAttribute('stroke-dasharray', '5 10');
+
+    const animateTransform = document.createElementNS('http://www.w3.org/2000/svg', 'animateTransform');
+    animateTransform.setAttribute('attributeName', 'transform');
+    animateTransform.setAttribute('type', 'rotate');
+    animateTransform.setAttribute('from', '0 150 150');
+    animateTransform.setAttribute('to', '360 150 150');
+    animateTransform.setAttribute('dur', `${Math.abs(duration)}s`);
+    animateTransform.setAttribute('repeatCount', 'indefinite');
+
+    circle.appendChild(animateTransform);
+    return circle;
+  }
+
+  createAnimatedPath() {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M 75 150 Q 150 75 225 150 T 225 150');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', '#3b82f6');
+    path.setAttribute('stroke-width', '3');
+    path.setAttribute('stroke-opacity', '0.4');
+    path.setAttribute('stroke-linecap', 'round');
+
+    const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+    animate.setAttribute('attributeName', 'stroke-dasharray');
+    animate.setAttribute('from', '0 400');
+    animate.setAttribute('to', '400 0');
+    animate.setAttribute('dur', '3s');
+    animate.setAttribute('repeatCount', 'indefinite');
+
+    path.appendChild(animate);
+    return path;
+  }
+
+  createFloatingDots() {
+    const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    
+    const positions = [
+      { x: 100, y: 100 }, { x: 200, y: 100 },
+      { x: 80, y: 200 }, { x: 220, y: 200 },
+      { x: 150, y: 80 }, { x: 150, y: 220 }
+    ];
+
+    positions.forEach((pos, index) => {
+      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      dot.setAttribute('cx', pos.x);
+      dot.setAttribute('cy', pos.y);
+      dot.setAttribute('r', '3');
+      dot.setAttribute('fill', '#3b82f6');
+      dot.setAttribute('opacity', '0.6');
+
+      const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+      animate.setAttribute('attributeName', 'opacity');
+      animate.setAttribute('values', '0.6;1;0.6');
+      animate.setAttribute('dur', '2s');
+      animate.setAttribute('begin', `${index * 0.3}s`);
+      animate.setAttribute('repeatCount', 'indefinite');
+
+      dot.appendChild(animate);
+      group.appendChild(dot);
+    });
+
+    return group;
+  }
+
+  createPulsingCenter() {
+    const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    center.setAttribute('cx', '150');
+    center.setAttribute('cy', '150');
+    center.setAttribute('r', '8');
+    center.setAttribute('fill', '#2563eb');
+
+    const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+    animate.setAttribute('attributeName', 'r');
+    animate.setAttribute('values', '8;12;8');
+    animate.setAttribute('dur', '2s');
+    animate.setAttribute('repeatCount', 'indefinite');
+
+    center.appendChild(animate);
+    return center;
+  }
+
+  // =================================
+  // FLOATING ELEMENTS ANIMATION
+  // =================================
+  setupFloatingElements() {
+    const container = document.querySelector('.floating-elements');
+    if (!container) return;
+
+    const elements = container.querySelectorAll('.floating-element');
+    
+    elements.forEach((element, index) => {
+      const speed = parseFloat(element.dataset.speed) || 0.5;
+      const radius = 60 + (index * 20);
+      const angle = (index * 120) * (Math.PI / 180);
+      
+      // Initial position
+      const centerX = 150;
+      const centerY = 150;
+      const x = centerX + Math.cos(angle) * radius;
+      const y = centerY + Math.sin(angle) * radius;
+      
+      element.style.left = x + 'px';
+      element.style.top = y + 'px';
+      
+      // Animate floating motion
+      this.animateFloating(element, speed, radius, angle);
+    });
+  }
+
+  animateFloating(element, speed, radius, startAngle) {
+    let angle = startAngle;
+    const centerX = 150;
+    const centerY = 150;
+    
+    const animate = () => {
+      angle += speed * 0.02;
+      const x = centerX + Math.cos(angle) * radius;
+      const y = centerY + Math.sin(angle) * radius + Math.sin(angle * 2) * 10;
+      
+      element.style.transform = `translate(${x - 150}px, ${y - 150}px)`;
+      requestAnimationFrame(animate);
+    };
+    
+    animate();
+  }
+
+  // =================================
+  // SCROLL ANIMATIONS WITH INTERSECTION OBSERVER
+  // =================================
+  setupScrollAnimations() {
+    // Enhanced intersection observer with different thresholds
+    const observerOptions = {
+      threshold: [0, 0.1, 0.5],
+      rootMargin: '-50px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.animateElement(entry.target, entry.intersectionRatio);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animatable elements
+    const animatableElements = document.querySelectorAll(`
+      .section-header, .project-card, .about-content, .skills-content,
+      .contact-content, .contact-form-container, .hero-badge, .hero-title,
+      .hero-description, .hero-stats, .hero-actions
+    `);
+
+    animatableElements.forEach((el, index) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+      el.style.transitionDelay = `${index * 0.1}s`;
+      observer.observe(el);
+    });
+  }
+
+  animateElement(element, ratio) {
+    if (ratio > 0.1) {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+      element.classList.add('animated');
+    }
+  }
+
+  triggerInitialAnimations() {
+    // Animate hero elements immediately
+    const heroElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-description');
+    heroElements.forEach((el, index) => {
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, index * 200);
+    });
+  }
+
+  // =================================
+  // PROJECT CARDS GENERATION
+  // =================================
+  generateProjectCards() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (!projectsGrid) return;
+
+    const projects = [
+      {
+        category: 'Finans & AI',
+        title: 'SmartBist - Akıllı Borsa İstanbul Portföy Yönetim Sistemi',
+        description: 'BIST için geliştirilen, TensorFlow ve LSTM algoritmaları kullanarak hisse senedi fiyat tahminleri yapan ve portföy optimizasyonu sağlayan gelişmiş bir finansal analiz sistemi.',
+        tags: ['ASP.NET Core MVC', 'Python', 'TensorFlow', 'LSTM', 'MSSQL', 'Power BI'],
+        links: [
+          { text: 'GitHub\'da Görüntüle', url: 'https://github.com/Mth0Ne/YATIRIM', icon: 'github' },
+          { text: 'Canlı Demo', url: '#', icon: 'external' }
+        ],
+        featured: true
+      },
+      {
+        category: 'İnsan Kaynakları',
+        title: 'Personel Maaş Yönetim Sistemi',
+        description: 'Kurumsal şirketler için geliştirilmiş kapsamlı bordro yönetimi, maaş hesaplama, çalışan takibi ve detaylı raporlama özellikleri içeren tam entegre İK sistemi.',
+        tags: ['ASP.NET Core MVC', 'C#', 'MSSQL', 'Entity Framework', 'Bootstrap'],
+        links: [
+          { text: 'GitHub\'da İncele', url: 'https://github.com/Mth0Ne/PayrollManagementSys', icon: 'github' }
+        ],
+        featured: false
+      },
+
+    ];
+
+    projectsGrid.innerHTML = '';
+
+    projects.forEach((project, index) => {
+      const card = this.createProjectCard(project, index);
+      projectsGrid.appendChild(card);
+    });
+  }
+
+  createProjectCard(project, index) {
+    const card = document.createElement('article');
+    card.className = 'project-card';
+    card.setAttribute('role', 'listitem');
+    
+    const linksHTML = project.links.map(link => 
+      `<a href="${link.url}" class="project-link" target="_blank" rel="noopener noreferrer">
+        ${link.text}
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          ${this.getIconSVG(link.icon)}
+        </svg>
+      </a>`
+    ).join('');
+
+    card.innerHTML = `
+      <div class="project-category">${project.category}</div>
+      <h3 class="project-title">${project.title}</h3>
+      <p class="project-description">${project.description}</p>
+      <div class="project-tags">
+        ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+      </div>
+      <div class="project-links">
+        ${linksHTML}
+      </div>
+    `;
+
+    return card;
+  }
+
+  getIconSVG(iconType) {
+    const icons = {
+      github: '<path d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="currentColor"/>',
+      external: '<path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+    };
+    return icons[iconType] || icons.external;
+  }
+
+  // =================================
+  // ENHANCED FORM HANDLING
+  // =================================
+  setupFormHandling() {
+    const form = document.querySelector('.contact-form');
+    if (!form) return;
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const inputs = form.querySelectorAll('input, select, textarea');
+
+    // Real-time validation
+    inputs.forEach(input => {
+      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('input', () => this.clearFieldError(input));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (this.validateForm(form)) {
+        await this.submitForm(form, submitButton);
+      }
+    });
+  }
+
+  validateField(field) {
+    const value = field.value.trim();
+    let isValid = true;
+    let message = '';
+
+    // Remove existing error
+    this.clearFieldError(field);
+
+    switch (field.type) {
+      case 'email':
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        isValid = emailRegex.test(value);
+        message = 'Geçerli bir e-posta adresi girin';
+        break;
+      case 'text':
+        isValid = value.length >= 2;
+        message = 'En az 2 karakter girin';
+        break;
+      case 'select-one':
+        isValid = value !== '';
+        message = 'Bir seçenek seçin';
+        break;
+      default:
+        if (field.tagName === 'TEXTAREA') {
+          isValid = value.length >= 10;
+          message = 'En az 10 karakter girin';
+        }
+    }
+
+    if (!isValid && field.hasAttribute('required')) {
+      this.showFieldError(field, message);
+    }
+
+    return isValid;
+  }
+
+  validateForm(form) {
+    const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
+    let isValid = true;
+
+    fields.forEach(field => {
+      if (!this.validateField(field)) {
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  }
+
+  showFieldError(field, message) {
+    field.classList.add('error');
+    
+    let errorElement = field.parentNode.querySelector('.field-error');
+    if (!errorElement) {
+      errorElement = document.createElement('span');
+      errorElement.className = 'field-error';
+      field.parentNode.appendChild(errorElement);
+    }
+    
+    errorElement.textContent = message;
+  }
+
+  clearFieldError(field) {
+    field.classList.remove('error');
+    const errorElement = field.parentNode.querySelector('.field-error');
+    if (errorElement) {
+      errorElement.remove();
+    }
+  }
+
+  async submitForm(form, button) {
+    // Add loading state
+    button.classList.add('loading');
+    button.disabled = true;
+
+    try {
+      // Simulate form submission (replace with actual endpoint)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Success state
+      this.showFormSuccess(form);
+      form.reset();
+      
+    } catch (error) {
+      this.showFormError('Mesaj gönderilemedi. Lütfen tekrar deneyin.');
+    } finally {
+      button.classList.remove('loading');
+      button.disabled = false;
+    }
+  }
+
+  showFormSuccess(form) {
+    const success = document.createElement('div');
+    success.className = 'form-success';
+    success.innerHTML = `
+      <div class="success-icon">✓</div>
+      <p>Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağım.</p>
+    `;
+    
+    form.style.transform = 'scale(0.95)';
+    form.style.opacity = '0.5';
+    
+    setTimeout(() => {
+      form.parentNode.insertBefore(success, form);
+      setTimeout(() => {
+        success.remove();
+        form.style.transform = '';
+        form.style.opacity = '';
+      }, 4000);
+    }, 500);
+  }
+
+  showFormError(message) {
+    // Simple error notification
+    const error = document.createElement('div');
+    error.className = 'form-error';
+    error.textContent = message;
+    document.body.appendChild(error);
+    
+    setTimeout(() => error.remove(), 4000);
+  }
+
+  // =================================
+  // MOBILE MENU FUNCTIONALITY
+  // =================================
+  setupMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.main-nav');
+    
+    if (!menuToggle || !nav) return;
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      
+      menuToggle.setAttribute('aria-expanded', !isOpen);
+      nav.classList.toggle('mobile-nav-open');
+      document.body.classList.toggle('mobile-menu-active');
+      
+      // Animate hamburger lines
+      this.animateMenuToggle(menuToggle, !isOpen);
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('mobile-nav-open')) {
+        menuToggle.click();
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!menuToggle.contains(e.target) && !nav.contains(e.target) && nav.classList.contains('mobile-nav-open')) {
+        menuToggle.click();
+      }
+    });
+  }
+
+  animateMenuToggle(toggle, isOpen) {
+    const lines = toggle.querySelectorAll('.hamburger-line');
+    if (isOpen) {
+      lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      lines[1].style.opacity = '0';
+      lines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+    } else {
+      lines[0].style.transform = '';
+      lines[1].style.opacity = '';
+      lines[2].style.transform = '';
+    }
+  }
+
+  // =================================
+  // SMOOTH SCROLLING & HEADER EFFECTS
+  // =================================
+  setupSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          const headerHeight = document.querySelector('.site-header').offsetHeight;
+          const targetPosition = targetElement.offsetTop - headerHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  }
+
+  setupHeaderScrollEffect() {
+    const header = document.querySelector('.site-header');
+    let lastScrollY = window.scrollY;
+
+    const handleHeaderScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Add shadow when scrolling
+      if (currentScrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Hide/show header on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+      
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', this.throttle(handleHeaderScroll, 16));
+  }
+
+  // =================================
+  // ENHANCED BUTTON ANIMATIONS
+  // =================================
+  setupButtonAnimations() {
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', (e) => {
+        this.createRippleEffect(e.target, e);
+      });
+      
+      button.addEventListener('focus', (e) => {
+        this.addFocusGlow(e.target);
+      });
+      
+      button.addEventListener('blur', (e) => {
+        this.removeFocusGlow(e.target);
+      });
+    });
+  }
+
+  createRippleEffect(button, event) {
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      left: ${x}px;
+      top: ${y}px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s ease-out;
+      pointer-events: none;
+    `;
+    
+    button.style.position = 'relative';
+    button.style.overflow = 'hidden';
+    button.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 600);
+  }
+
+  addFocusGlow(element) {
+    element.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.3)';
+  }
+
+  removeFocusGlow(element) {
+    element.style.boxShadow = '';
+  }
+
+  // =================================
+  // EVENT HANDLING UTILITIES
+  // =================================
+  handleResize() {
+    // Recalculate floating elements on resize
+    this.setupFloatingElements();
+  }
+
+  handleScroll() {
+    // Parallax effect for hero elements
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero-visual');
+    
+    if (hero) {
+      hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+    }
+  }
+
+  // =================================
+  // UTILITY FUNCTIONS
+  // =================================
+  debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
+  }
 }
 
-// Simple viewport fix
-window.addEventListener('resize', () => {
-    document.documentElement.style.height = window.innerHeight + 'px';
+// =================================
+// CSS ANIMATIONS (Added via JS)
+// =================================
+const additionalStyles = `
+  <style>
+    @keyframes ripple {
+      to {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+    
+    .form-success {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: white;
+      padding: var(--space-6);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      animation: slideInUp 0.5s ease-out;
+    }
+    
+    .success-icon {
+      font-size: var(--text-2xl);
+      font-weight: bold;
+    }
+    
+    .form-error {
+      position: fixed;
+      top: var(--space-6);
+      right: var(--space-6);
+      background: #ef4444;
+      color: white;
+      padding: var(--space-4) var(--space-6);
+      border-radius: var(--radius-md);
+      z-index: var(--z-tooltip);
+      animation: slideInRight 0.3s ease-out;
+    }
+    
+    .field-error {
+      display: block;
+      color: #ef4444;
+      font-size: var(--text-sm);
+      margin-top: var(--space-1);
+    }
+    
+    .form-input.error,
+    .form-select.error,
+    .form-textarea.error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+    
+    .mobile-nav-open {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: var(--space-6);
+      z-index: var(--z-dropdown);
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    .mobile-nav-open .nav-list {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    
+    .site-header.scrolled {
+      box-shadow: var(--shadow-lg);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .svg-fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.5s forwards;
+    }
+    
+    @keyframes slideInUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideDown {
+      from {
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+`;
+
+// =================================
+// INITIALIZE APPLICATION
+// =================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Add additional styles
+  document.head.insertAdjacentHTML('beforeend', additionalStyles);
+  
+  // Initialize the portfolio app
+  new PortfolioApp();
 });
 
-// DOM Content Loaded
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Enhanced Navigation Menu Toggle with Accessibility
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (hamburger && navMenu) {
-        // Set initial ARIA attributes
-        hamburger.setAttribute('aria-expanded', 'false');
-        
-        hamburger.addEventListener('click', () => {
-            const isOpen = hamburger.classList.contains('active');
-            
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-            
-            // Update ARIA attributes
-            hamburger.setAttribute('aria-expanded', (!isOpen).toString());
-            
-            // Focus management
-            if (!isOpen) {
-                // Menu is opening, focus first link
-                const firstLink = navMenu.querySelector('.nav-link');
-                if (firstLink) {
-                    firstLink.focus();
-                }
-            }
-        });
-        
-        // Enhanced keyboard support
-        hamburger.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                hamburger.click();
-            }
-        });
-        
-        // Handle keyboard navigation in mobile menu
-        navMenu.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                hamburger.setAttribute('aria-expanded', 'false');
-                hamburger.focus();
-            }
-        });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                hamburger.setAttribute('aria-expanded', 'false');
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                hamburger.setAttribute('aria-expanded', 'false');
-            }
-        });
-        
-        // Handle window resize to close mobile menu on desktop
-        window.addEventListener('resize', throttle(() => {
-            if (window.innerWidth >= 768) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                hamburger.setAttribute('aria-expanded', 'false');
-            }
-        }, 250));
-    }
-    
-    // Enhanced smooth scrolling for navigation links with offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerHeight = document.querySelector('.navbar').offsetHeight;
-                const offsetTop = target.offsetTop - headerHeight - 20; // Extra padding
-                window.scrollTo({
-                    top: Math.max(0, offsetTop),
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
-    // Terminal animation removed as terminal is no longer used
-    
-    // Enhanced typing animation for hero title with mobile optimization
-    const typingText = document.querySelector('.typing-text');
-    if (typingText) {
-        const text = typingText.textContent;
-        const isMobileDevice = window.innerWidth <= 768;
-        
-        typingText.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                typingText.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, isMobileDevice ? 50 : 80);
-            }
-        }
-        
-        setTimeout(typeWriter, 1000);
-    }
-    
-    // Enhanced Navbar scroll effect with performance optimization
-    let lastScrollTop = 0;
-    let ticking = false;
-    const navbar = document.querySelector('.navbar');
-    
-    function updateNavbar() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Add background blur effect when scrolling
-        if (scrollTop > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-        
-        // Hide/show navbar on scroll (only on mobile)
-        if (window.innerWidth <= 768) {
-            if (scrollTop > lastScrollTop && scrollTop > 200) {
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollTop = scrollTop;
-        ticking = false;
-    }
-    
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(updateNavbar);
-            ticking = true;
-        }
-    }, { passive: true });
-    
-    // Skill progress bar animation with enhanced effects and performance
-    const skillBars = document.querySelectorAll('.skill-progress');
-    const animateSkillBars = () => {
-        skillBars.forEach((bar, index) => {
-            const width = bar.getAttribute('data-width');
-            setTimeout(() => {
-                bar.style.width = width;
-                bar.style.opacity = '1';
-            }, index * 150);
-        });
-    };
-    
-    // Enhanced Intersection Observer for animations with mobile optimization
-    const observerOptions = {
-        threshold: window.innerWidth <= 768 ? 0.1 : 0.15,
-        rootMargin: window.innerWidth <= 768 ? '0px 0px -50px 0px' : '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-                
-                // Animate skill bars when skills section is visible
-                if (entry.target.id === 'skills') {
-                    setTimeout(animateSkillBars, 300);
-                }
-                
-                // Counter animation for stats with enhanced effects (except static stats)
-                if (entry.target.classList.contains('stat-number') && !entry.target.classList.contains('static-stat')) {
-                    animateCounter(entry.target);
-                }
-                
-                // Stagger animations for child elements with mobile optimization
-                const children = entry.target.querySelectorAll('.skill-item, .timeline-item, .certification-card, .project-card');
-                const staggerDelay = window.innerWidth <= 768 ? 100 : 150;
-                children.forEach((child, index) => {
-                    setTimeout(() => {
-                        child.classList.add('animate');
-                    }, index * staggerDelay);
-                });
-            }
-        });
-    }, observerOptions);
-    
-    // Add animation class to elements with enhanced selection
-    const animateElements = document.querySelectorAll(`
-        .skill-category, .timeline-item, .certification-card, .project-card,
-        .about-content, .contact-content, .stat,
-        .code-block, .education-item
-    `);
-    
-    animateElements.forEach(el => {
-        el.classList.add('animate-on-scroll');
-        observer.observe(el);
-    });
-    
-    // Observe sections for enhanced animations
-    ['skills', 'about', 'projects', 'experience', 'education', 'certifications', 'contact'].forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) observer.observe(section);
-    });
-    
-    // Observe stat numbers with enhanced animations (exclude static stats)
-    const statNumbers = document.querySelectorAll('.stat-number:not(.static-stat)');
-    statNumbers.forEach(stat => observer.observe(stat));
-    
-    // Enhanced Konami Code Easter Egg with mobile support
-    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
-    let konamiIndex = 0;
-    let touchStartY = 0;
-    let touchStartX = 0;
-    let touchSequence = [];
-    
-    function initKonamiCode() {
-        // Keyboard support
-        document.addEventListener('keydown', function(e) {
-            if (e.keyCode === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    triggerEasterEgg();
-                    konamiIndex = 0;
-                }
-            } else {
-                konamiIndex = 0;
-            }
-        });
-        
-        // Touch support for mobile
-        document.addEventListener('touchstart', function(e) {
-            if (e.touches.length === 1) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            }
-        }, { passive: true });
-        
-        document.addEventListener('touchend', function(e) {
-            if (e.changedTouches.length === 1) {
-                const touchEndX = e.changedTouches[0].clientX;
-                const touchEndY = e.changedTouches[0].clientY;
-                const deltaX = touchEndX - touchStartX;
-                const deltaY = touchEndY - touchStartY;
-                const threshold = 50;
-                
-                let direction = null;
-                if (Math.abs(deltaY) > Math.abs(deltaX)) {
-                    if (deltaY > threshold) direction = 'down';
-                    else if (deltaY < -threshold) direction = 'up';
-                } else {
-                    if (deltaX > threshold) direction = 'right';
-                    else if (deltaX < -threshold) direction = 'left';
-                }
-                
-                if (direction) {
-                    touchSequence.push(direction);
-                    if (touchSequence.length > 10) touchSequence.shift();
-                    
-                    // Simple touch pattern: up, up, down, down, left, right, left, right
-                    const targetSequence = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right'];
-                    if (touchSequence.length >= targetSequence.length) {
-                        const lastMoves = touchSequence.slice(-targetSequence.length);
-                        if (JSON.stringify(lastMoves) === JSON.stringify(targetSequence)) {
-                            triggerEasterEgg();
-                            touchSequence = [];
-                        }
-                    }
-                }
-            }
-        }, { passive: true });
-    }
-    
-    function triggerEasterEgg() {
-        // Create matrix rain effect
-        createMatrixRain();
-        
-        // Add glitch effect to title
-        const heroTitle = document.querySelector('.title-name');
-        if (heroTitle) {
-            heroTitle.classList.add('glitch');
-            setTimeout(() => {
-                heroTitle.classList.remove('glitch');
-            }, 1000);
-        }
-        
-        // Show fun message
-        showEasterEggMessage();
-        
-        // Play fun animation
-        document.body.classList.add('konami-activated');
-        setTimeout(() => {
-            document.body.classList.remove('konami-activated');
-        }, 5000);
-    }
-    
-    function createMatrixRain() {
-        const matrixCanvas = document.createElement('canvas');
-        matrixCanvas.id = 'matrix-rain';
-        matrixCanvas.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            pointer-events: none;
-            background: rgba(0, 0, 0, 0.8);
-        `;
-        document.body.appendChild(matrixCanvas);
-        
-        const ctx = matrixCanvas.getContext('2d');
-        matrixCanvas.width = window.innerWidth;
-        matrixCanvas.height = window.innerHeight;
-        
-        const characters = 'ALPEREN_TOKER_DEVELOPER_CODE_MATRIX_01';
-        const fontSize = window.innerWidth <= 768 ? 12 : 14;
-        const columns = matrixCanvas.width / fontSize;
-        const drops = [];
-        
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-        
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-            
-            ctx.fillStyle = '#64FFDA';
-            ctx.font = fontSize + 'px monospace';
-            
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters[Math.floor(Math.random() * characters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-        
-        const matrixInterval = setInterval(drawMatrix, 35);
-        
-        setTimeout(() => {
-            clearInterval(matrixInterval);
-            if (document.body.contains(matrixCanvas)) {
-                document.body.removeChild(matrixCanvas);
-            }
-        }, 4000);
-    }
-    
-    function showEasterEggMessage() {
-        const messageDiv = document.createElement('div');
-        messageDiv.innerHTML = `
-            <div style="
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, #64FFDA, #007BFF);
-                color: #0A192F;
-                padding: 2rem;
-                border-radius: 16px;
-                text-align: center;
-                z-index: 10000;
-                font-family: 'Montserrat', sans-serif;
-                font-weight: bold;
-                font-size: clamp(1rem, 3vw, 1.2rem);
-                box-shadow: 0 20px 40px rgba(100, 255, 218, 0.3);
-                animation: easterEggPulse 2s ease-in-out infinite;
-                max-width: 90vw;
-            ">
-                🎉 Konami Kodu Bulundu! 🎉<br>
-                <span style="font-size: 0.9em; margin-top: 0.5rem; display: block;">
-                    Tebrikler! Gizli kodu keşfettin! 🚀
-                </span>
-            </div>
-        `;
-        
-        document.body.appendChild(messageDiv);
-        
-        setTimeout(() => {
-            if (document.body.contains(messageDiv)) {
-                document.body.removeChild(messageDiv);
-            }
-        }, 3000);
-    }
-    
-    // Initialize Konami Code
-    initKonamiCode();
+// =================================
+// PERFORMANCE OPTIMIZATION
+// =================================
+// Preload critical resources
+const preloadResources = [
+  'styles.css'
+];
 
-    // Enhanced counter animation function
-    function animateCounter(element) {
-        const target = parseInt(element.textContent.replace(/\D/g, ''));
-        const isPercentage = element.textContent.includes('%');
-        const isPlusSign = element.textContent.includes('+');
-        let current = 0;
-        const duration = window.innerWidth <= 768 ? 1500 : 2000; // Faster on mobile
-        const increment = target / (duration / 40);
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current) + (isPercentage ? '%' : '') + (isPlusSign ? '+' : '');
-        }, 40);
-    }
-    
-    // Enhanced contact form handling with improved mobile experience
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            // Form validation
-            if (!name) {
-                showNotification('Lütfen adınızı girin.', 'error');
-                document.getElementById('name').focus();
-                return;
-            }
-            
-            if (!email || !isValidEmail(email)) {
-                showNotification('Lütfen geçerli bir e-posta adresi girin.', 'error');
-                document.getElementById('email').focus();
-                return;
-            }
-            
-            if (!subject) {
-                showNotification('Lütfen bir konu girin.', 'error');
-                document.getElementById('subject').focus();
-                return;
-            }
-            
-            if (!message) {
-                showNotification('Lütfen mesajınızı yazın.', 'error');
-                document.getElementById('message').focus();
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Gönderiliyor...';
-            submitBtn.disabled = true;
-            submitBtn.style.opacity = '0.7';
-            
-            showNotification('Mesajınız gönderiliyor...', 'info');
-            
-            // Create mailto link for email client
-            const mailtoLink = `mailto:alperentoker149@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Ad: ${name}\nE-posta: ${email}\n\nMesaj:\n${message}`)}`;
-            
-            // Try to open email client
-            try {
-                window.location.href = mailtoLink;
-                
-                setTimeout(() => {
-                    showNotification('E-posta istemciniz açıldı! Mesajı göndermeyi unutmayın.', 'success');
-                    contactForm.reset();
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.opacity = '1';
-                }, 1000);
-            } catch (error) {
-                // Fallback: show email details
-                showFallbackMessage(name, email, subject, message);
-                
-                setTimeout(() => {
-                    contactForm.reset();
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.opacity = '1';
-                }, 2000);
-            }
-        });
-        
-        // Enhanced form validation on input
-        const inputs = contactForm.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                if (this.hasAttribute('required') && !this.value.trim()) {
-                    this.style.borderColor = '#EF4444';
-                } else if (this.type === 'email' && this.value && !isValidEmail(this.value)) {
-                    this.style.borderColor = '#EF4444';
-                } else {
-                    this.style.borderColor = '';
-                }
-            });
-            
-            input.addEventListener('input', function() {
-                this.style.borderColor = '';
-            });
-        });
-    }
-    
-    function showFallbackMessage(name, email, subject, message) {
-        const fallbackDiv = document.createElement('div');
-        fallbackDiv.innerHTML = `
-            <div style="
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(10, 25, 47, 0.95);
-                color: white;
-                padding: 2rem;
-                border-radius: 16px;
-                text-align: left;
-                z-index: 10000;
-                max-width: min(500px, 90vw);
-                max-height: 80vh;
-                overflow-y: auto;
-                border: 1px solid #64FFDA;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-                backdrop-filter: blur(10px);
-            ">
-                <h3 style="color: #64FFDA; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; font-size: clamp(1.1rem, 3vw, 1.3rem);">Mesaj Detayları</h3>
-                <p style="margin-bottom: 1rem; color: #CBD5E1; font-size: clamp(0.9rem, 2.5vw, 1rem);">E-posta istemciniz açılamadı. Lütfen aşağıdaki bilgileri kullanarak manuel olarak e-posta gönderin:</p>
-                <div style="background: rgba(0, 0, 0, 0.3); padding: 1rem; border-radius: 8px; font-family: 'Fira Code', monospace; margin-bottom: 1rem; font-size: clamp(0.8rem, 2vw, 0.9rem); overflow-x: auto;">
-                    <strong style="color: #64FFDA;">E-posta:</strong> alperentoker149@gmail.com<br>
-                    <strong style="color: #64FFDA;">Konu:</strong> ${subject}<br><br>
-                    <strong style="color: #64FFDA;">Ad:</strong> ${name}<br>
-                    <strong style="color: #64FFDA;">E-posta:</strong> ${email}<br><br>
-                    <strong style="color: #64FFDA;">Mesaj:</strong><br>${message}
-                </div>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button onclick="copyToClipboard('${email}\\n${subject}\\n\\n${name}\\n${email}\\n\\n${message}')" style="
-                        background: #007BFF;
-                        color: white;
-                        border: none;
-                        padding: 0.75rem 1rem;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        font-weight: bold;
-                        font-size: clamp(0.9rem, 2.5vw, 1rem);
-                        min-height: 44px;
-                        flex: 1;
-                        min-width: 120px;
-                    ">Kopyala</button>
-                    <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
-                        background: #64FFDA;
-                        color: #0A192F;
-                        border: none;
-                        padding: 0.75rem 1rem;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        font-weight: bold;
-                        font-size: clamp(0.9rem, 2.5vw, 1rem);
-                        min-height: 44px;
-                        flex: 1;
-                        min-width: 120px;
-                    ">Tamam</button>
-                </div>
-            </div>
-        `;
-        
-        document.body.appendChild(fallbackDiv);
-        
-        // Close on escape key
-        function handleEscape(e) {
-            if (e.key === 'Escape') {
-                fallbackDiv.remove();
-                document.removeEventListener('keydown', handleEscape);
-            }
-        }
-        document.addEventListener('keydown', handleEscape);
-        
-        setTimeout(() => {
-            if (fallbackDiv.parentElement) {
-                document.body.removeChild(fallbackDiv);
-                document.removeEventListener('keydown', handleEscape);
-            }
-        }, 30000);
-    }
-    
-    // Copy to clipboard function with mobile support
-    window.copyToClipboard = function(text) {
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('Mesaj detayları panoya kopyalandı!', 'success');
-            }).catch(() => {
-                fallbackCopyToClipboard(text);
-            });
-        } else {
-            fallbackCopyToClipboard(text);
-        }
-    }
-    
-    function fallbackCopyToClipboard(text) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-            document.execCommand('copy');
-            showNotification('Mesaj detayları panoya kopyalandı!', 'success');
-        } catch (err) {
-            showNotification('Kopyalama işlemi başarısız oldu. Lütfen manuel olarak kopyalayın.', 'error');
-        }
-        
-        document.body.removeChild(textArea);
-    }
-    
-    // Enhanced email validation function
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    // Enhanced notification system with mobile optimization
-    function showNotification(message, type = 'info') {
-        // Remove existing notifications
-        const existingNotifications = document.querySelectorAll('.notification');
-        existingNotifications.forEach(notification => notification.remove());
-        
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                <span class="notification-message">${message}</span>
-                <button class="notification-close" aria-label="Bildirimi kapat">&times;</button>
-            </div>
-        `;
-        
-        // Enhanced notification styles with mobile optimization
-        const isMobile = window.innerWidth <= 768;
-        notification.style.cssText = `
-            position: fixed;
-            top: ${isMobile ? '20px' : '100px'};
-            ${isMobile ? 'left: 20px; right: 20px;' : 'right: 20px; max-width: 400px;'}
-            background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
-            color: white;
-            padding: 16px 20px;
-            border-radius: 12px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            z-index: 10000;
-            animation: slideIn${isMobile ? 'Down' : 'Right'} 0.3s ease-out;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Auto close after 5 seconds
-        const autoCloseTimer = setTimeout(() => {
-            notification.style.animation = `slideOut${isMobile ? 'Up' : 'Right'} 0.3s ease-in`;
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
-                }
-            }, 300);
-        }, 5000);
-        
-        // Close button functionality
-        const closeBtn = notification.querySelector('.notification-close');
-        closeBtn.addEventListener('click', () => {
-            clearTimeout(autoCloseTimer);
-            notification.style.animation = `slideOut${isMobile ? 'Up' : 'Right'} 0.3s ease-in`;
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
-                }
-            }, 300);
-        });
-    }
-    
-    // Performance optimized throttle function
-    function throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-    
-    // Add CSS animations for notifications with mobile support
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideOutRight {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-        
-        @keyframes slideInDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideOutUp {
-            from {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-        }
-        
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .notification-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-            margin-left: auto;
-            min-height: 44px;
-            min-width: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-        }
-        
-        .notification-close:hover,
-        .notification-close:focus {
-            opacity: 1;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .navbar.scrolled {
-            background: rgba(10, 25, 47, 0.98) !important;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            z-index: 1000 !important;
-        }
-        
-        body.menu-open {
-            overflow: hidden;
-        }
-        
-        /* Enhanced focus styles for accessibility */
-        .nav-link:focus,
-        .btn:focus,
-        .hamburger:focus,
-        .social-links a:focus,
-        .project-links a:focus,
-        input:focus,
-        textarea:focus,
-        button:focus {
-            outline: 2px solid #64FFDA;
-            outline-offset: 2px;
-        }
-        
-                 /* Reduce motion for users who prefer it */
-         @media (prefers-reduced-motion: reduce) {
-             .notification {
-                 animation: none !important;
-             }
-             
-             .animate-on-scroll {
-                 animation: none !important;
-             }
-         }
-    `;
-    document.head.appendChild(style);
-
-    // Update footer year dynamically
-    const yearEl = document.getElementById('year');
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-
+preloadResources.forEach(resource => {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.href = resource;
+  link.as = 'style';
+  document.head.appendChild(link);
 }); 

@@ -1,487 +1,339 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <!-- Performance optimizations -->
-    <meta name="theme-color" content="#0A192F">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="Yazılım Geliştirme ve Raporlama Mühendisi Alperen Toker'in kişisel portfolyosu. C#, ASP.NET Core, Python ve Power BI yeteneklerimi ve projelerimi keşfedin.">
-    <title>Alperen Toker - Yazılım Geliştirme ve Raporlama Mühendisi</title>
-    <meta property="og:title" content="Alperen Toker - Yazılım Geliştirme ve Raporlama Mühendisi">
-    <meta property="og:description" content="Yazılım Geliştirici & Raporlama Mühendisi portfolyosu.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://alperentoker.com/">
-    <meta property="og:image" content="https://alperentoker.com/thumbnail.png">
-    <link rel="canonical" href="https://alperentoker.com/">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:wght@300;400;500&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alperen Toker | Yazılım & Raporlama Mühendisi</title>
+  <meta name="description" content="C#, .NET, Python ve Power BI uzmanı Yazılım & Raporlama Mühendisi Alperen Toker'in modern portfolyo sitesi.">
+  <meta name="author" content="Alperen Toker">
+  <meta name="keywords" content="yazılım geliştirici, C#, .NET, Python, Power BI, portfolio, Alperen Toker">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Ana navigasyon">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">AT</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
-                <li><a href="#about" class="nav-link">Hakkımda</a></li>
-                <li><a href="#skills" class="nav-link">Yetenekler</a></li>
-                <li><a href="#projects" class="nav-link">Projeler</a></li>
-                <li><a href="#experience" class="nav-link">Deneyim</a></li>
-                <li><a href="#education" class="nav-link">Eğitim</a></li>
-                <li><a href="#certifications" class="nav-link">Sertifikalar</a></li>
-                <li><a href="#contact" class="nav-link">İletişim</a></li>
-            </ul>
-            <button class="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </button>
+  <!-- Header with sticky navigation -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo" aria-label="Alperen Toker Logo">
+          <span class="logo-text">AT</span>
         </div>
-    </nav>
+        <nav class="main-nav" role="navigation" aria-label="Ana navigasyon">
+          <ul class="nav-list">
+            <li><a href="#projects" class="nav-link">Projeler</a></li>
+            <li><a href="#about" class="nav-link">Hakkımda</a></li>
+            <li><a href="#contact" class="nav-link">İletişim</a></li>
+            <li><a href="Alperen_Toker_CV.pdf" class="nav-link cv-link" target="_blank">CV İndir</a></li>
+          </ul>
+        </nav>
+        <button class="mobile-menu-toggle" aria-label="Mobil menü" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-main">
-                <div class="hero-badge">
-                    <span class="badge-text">Yazılım Geliştirici</span>
-                </div>
-                <h1 class="hero-title">
-                    <span class="title-line">Merhaba, ben</span>
-                    <span class="title-name typing-text">Alperen Toker</span>
-                </h1>
-                <p class="hero-subtitle">Yazılım Geliştirme ve Raporlama Mühendisi</p>
-                <p class="hero-description">
-                    C#, ASP.NET Core ve Python deneyimi olan bir yazılım geliştiricisiyim. 
-                    Web uygulamaları geliştiriyorum ve Power BI ile veri analizi yapıyorum.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        İletişime Geç
-                    </a>
-                    <a href="#experience" class="btn btn-secondary">
-                        <i class="fas fa-briefcase" aria-hidden="true"></i>
-                        Deneyimlerimi Gör
-                    </a>
-                    <a href="/Alperen_Toker_CV.pdf" download class="btn btn-secondary">
-                        <i class="fas fa-download" aria-hidden="true"></i>
-                        CV'mi İndir
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number static-stat" aria-label="2 artı yıl deneyim">2+</span>
-                        <span class="stat-label">Yıl Deneyim</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number static-stat" aria-label="3 şirket">3</span>
-                        <span class="stat-label">Şirket</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number static-stat" aria-label="2 sertifika">2</span>
-                        <span class="stat-label">Sertifika</span>
-                    </div>
-                </div>
+  <main role="main">
+    <!-- Hero Section with asymmetric grid -->
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">Yazılım & Raporlama Mühendisi</div>
+            <h1 id="hero-title" class="hero-title">
+              <span class="title-line">Alperen</span>
+              <span class="title-line accent">Toker</span>
+            </h1>
+            <p class="hero-description">
+              Teknolojiye olan tutkum ve analitik bakış açımla, <strong>veriden değere</strong> ulaşan projeler geliştiriyorum. 
+              Temiz kod, sürdürülebilir çözümler ve güvenilir raporlama benim uzmanlık alanım.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-number">2+</span>
+                <span class="stat-label">Yıl Deneyim</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Proje</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Teknoloji</span>
+              </div>
             </div>
-
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">
+                <span>Projelerimi Keşfet</span>
+                <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </a>
+              <a href="#contact" class="btn btn-secondary">İletişime Geç</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="visual-container">
+              <div class="svg-animation" aria-hidden="true"></div>
+              <div class="floating-elements" aria-hidden="true">
+                <div class="floating-element" data-speed="0.5"></div>
+                <div class="floating-element" data-speed="0.8"></div>
+                <div class="floating-element" data-speed="0.3"></div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll</span>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Ben Kimim?</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-description">
-                        C#, ASP.NET Core ve Python deneyimi olan bir yazılım geliştiricisiyim. Web uygulamaları geliştiriyorum 
-                        ve SQL, MSSQL, Oracle SQL ve PostgreSQL kullanarak verilerle çalışıyorum. Ayrıca raporlar ve 
-                        dashboardlar oluşturmak için Power BI kullanıyorum.
-                    </p>
-                    <p class="about-description">
-                        TensorFlow ile temel makine öğrenmesi bilgim bulunmaktadır. Problem çözmekten, yeni teknolojiler 
-                        öğrenmekten ve hem yazılım hem de veri projeleri üzerinde çalışmaktan keyif alıyorum.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number static-stat" aria-label="2 artı yıl deneyim">2+</span>
-                            <span class="stat-label">Yıl Deneyim</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number static-stat" aria-label="3 şirket deneyimi">3</span>
-                            <span class="stat-label">Şirket Deneyimi</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number static-stat" aria-label="2 sertifika">2</span>
-                            <span class="stat-label">Sertifika</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-title">about_me.js</span>
-                        </div>
-                        <div class="code-content">
-                            <pre><code>const alperenToker = {
-    name: "Alperen Toker",
-    role: "Yazılım Geliştirme ve Raporlama Mühendisi",
-    location: "Kayseri, Turkey",
-    education: "Bilgisayar Mühendisliği - Kayseri Üniversitesi",
-    skills: [
-        "C#", "ASP.NET Core", "Python",
-        "SQL Server", "PostgreSQL", "Oracle SQL",
-        "Power BI", "TensorFlow"
-    ],
-    experience: [
-        "İstikbal Mobilya A.Ş.",
-        "Mobius Yazılım Çözümleri", 
-        "B&B Bilişim"
-    ],
-    passion: "Veri analizi ve yazılım geliştirme",
-    currentFocus: "Veri raporlama ve dashboard geliştirme"
-};</code></pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Projects Section with asymmetric grid -->
+    <section id="projects" class="projects-section" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <div class="section-title-group">
+            <h2 id="projects-title" class="section-title">Öne Çıkan Projeler</h2>
+            <p class="section-subtitle">Öğrenme sürecimde geliştirdiğim kişisel projeler ve deneyimlerim</p>
+          </div>
         </div>
+        
+        <div class="projects-grid" role="list">
+          <!-- Project cards will be generated by JavaScript -->
+        </div>
+        
+        <div class="projects-footer">
+          <a href="https://github.com/Mth0Ne" class="btn btn-outline" target="_blank">
+            Tüm Projeleri GitHub'da Gör
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Teknik Yetenekler</h2>
+    <!-- About & Skills Section -->
+    <section id="about" class="about-section" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content">
+            <div class="section-number">02</div>
+            <h2 id="about-title" class="section-title">Hakkımda</h2>
+            <div class="about-text">
+              <p class="lead">
+                Yazılım geliştirme ve veri analizi alanında <strong>2+ yıldır</strong> aktif olarak çalışan 
+                bir bilgisayar mühendisliği öğrencisiyim. Teknolojiye olan tutkum ile karmaşık problemleri çözme konusunda kendimi sürekli geliştiriyorum.
+              </p>
+              <p>
+                <strong>C#, .NET, Python</strong> ve <strong>Power BI</strong> teknolojileriyle modern web uygulamaları 
+                ve veri analizi projeleri geliştiriyorum. Özellikle <em>finans</em> ve <em>insan kaynakları</em> alanlarında 
+                kişisel projelerimle pratik deneyim kazanıyorum.
+              </p>
+              <p>
+                Analitik düşünce yapım ve detaycı yaklaşımımla, öğrendiğim her teknoloji ile gerçek dünya problemlerine 
+                odaklanan çözümler geliştirmeye ve kendimi profesyonel düzeyde hazırlamaya odaklanıyorum.
+              </p>
+            </div>
+            <div class="about-highlights">
+              <div class="highlight">
+                <div class="highlight-icon">🎯</div>
+                <div class="highlight-content">
+                  <h4>Problem Çözme</h4>
+                  <p>Karmaşık iş süreçlerini analiz ederek etkili çözümler geliştirme</p>
+                </div>
+              </div>
+              <div class="highlight">
+                <div class="highlight-icon">⚡</div>
+                <div class="highlight-content">
+                  <h4>Hızlı Adapte</h4>
+                  <p>Yeni teknolojileri hızla öğrenme ve projelerimde uygulama</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+                    <div class="skills-content">
+            <h3 class="skills-title">Teknik Yetenekler</h3>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programlama Dilleri</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">C#</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">ASP.NET Core</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">SQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="skill-category">
+                <h4 class="category-title">Yazılım Geliştirme</h4>
+                <div class="skills-list">
+                  <span class="skill-item level-advanced">C#</span>
+                  <span class="skill-item level-advanced">.NET Core</span>
+                  <span class="skill-item level-advanced">ASP.NET Core MVC</span>
+                  <span class="skill-item level-intermediate">Entity Framework</span>
+                  <span class="skill-item level-intermediate">OOP & SOLID</span>
                 </div>
-                <div class="skill-category">
-                    <h3>Veritabanları</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Microsoft SQL Server</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Oracle SQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">PostgreSQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="82%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">MySQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              
+              <div class="skill-category">
+                <h4 class="category-title">Web Teknolojileri</h4>
+                <div class="skills-list">
+                  <span class="skill-item level-advanced">HTML5 & CSS3</span>
+                  <span class="skill-item level-intermediate">JavaScript</span>
+                  <span class="skill-item level-intermediate">Bootstrap</span>
+                  <span class="skill-item level-intermediate">Razor Pages</span>
+                  <span class="skill-item level-beginner">REST API</span>
                 </div>
-                <div class="skill-category">
-                    <h3>Veri Analizi & Raporlama</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Microsoft Power BI</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">TensorFlow</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Veri Analizi</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Dashboard Geliştirme</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88%"></div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              
+              <div class="skill-category">
+                <h4 class="category-title">Python & Veri Bilimi</h4>
+                <div class="skills-list">
+                  <span class="skill-item level-advanced">Python</span>
+                  <span class="skill-item level-advanced">Pandas</span>
+                  <span class="skill-item level-intermediate">NumPy</span>
+                  <span class="skill-item level-intermediate">TensorFlow</span>
+                  <span class="skill-item level-intermediate">Matplotlib</span>
                 </div>
+              </div>
+              
+              <div class="skill-category">
+                <h4 class="category-title">Veritabanı Sistemleri</h4>
+                <div class="skills-list">
+                  <span class="skill-item level-expert">SQL Server</span>
+                  <span class="skill-item level-expert">T-SQL</span>
+                  <span class="skill-item level-advanced">PostgreSQL</span>
+                  <span class="skill-item level-intermediate">Oracle SQL</span>
+                  <span class="skill-item level-expert">Power BI</span>
+                </div>
+              </div>
+              
+              <div class="skill-category">
+                <h4 class="category-title">Araçlar & Metodoloji</h4>
+                <div class="skills-list">
+                  <span class="skill-item level-advanced">Visual Studio</span>
+                  <span class="skill-item level-advanced">Git & GitHub</span>
+                  <span class="skill-item level-intermediate">SQL Server Management Studio</span>
+                  <span class="skill-item level-intermediate">Agile & Scrum</span>
+                  <span class="skill-item level-beginner">Azure DevOps</span>
+                </div>
+              </div>
             </div>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Projelerim</h2>
-            <div class="projects-grid">
-                <article class="project-card">
-                    <div class="project-header">
-                        <h3>SmartBist - Akıllı Borsa İstanbul Portföy Yönetim Sistemi</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Mth0Ne/YATIRIM" target="_blank" aria-label="SmartBist GitHub Repository" rel="noopener">
-                                <i class="fab fa-github" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            Borsa İstanbul (BIST) için geliştirilmiş akıllı portföy yönetim sistemi. 
-                            TensorFlow ve LSTM deep learning modelleri kullanarak hisse senedi fiyat 
-                            tahminleri yapan ve yatırımcıları bilgilendiren kapsamlı bir web uygulaması.
-                        </p>
-                        <div class="project-technologies">
-                            <span class="tech-tag">ASP.NET Core MVC</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">LSTM</span>
-                            <span class="tech-tag">Deep Learning</span>
-                            <span class="tech-tag">MSSQL</span>
-                        </div>
-                        <div class="project-features">
-                            <h4>Özellikler:</h4>
-                            <ul>
-                                <li>Gerçek zamanlı hisse senedi veri analizi</li>
-                                <li>LSTM modeli ile fiyat tahminleri</li>
-                                <li>Portföy performans takibi</li>
-                                <li>Risk analizi ve raporlama</li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="project-card">
-                    <div class="project-header">
-                        <h3>Personel Maaş Yönetim Sistemi</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Mth0Ne/PayrollManagementSys" target="_blank" aria-label="Personel Maaş Sistemi GitHub Repository" rel="noopener">
-                                <i class="fab fa-github" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            Şirketler için geliştirilmiş kapsamlı personel maaş yönetim sistemi. 
-                            Çalışan bilgileri, maaş hesaplamaları, bordro oluşturma ve raporlama 
-                            özelliklerini içeren modern bir web uygulaması.
-                        </p>
-                        <div class="project-technologies">
-                            <span class="tech-tag">ASP.NET Core MVC</span>
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">MSSQL</span>
-                            <span class="tech-tag">Entity Framework</span>
-                            <span class="tech-tag">Bootstrap</span>
-                        </div>
-                        <div class="project-features">
-                            <h4>Özellikler:</h4>
-                            <ul>
-                                <li>Personel bilgi yönetimi</li>
-                                <li>Otomatik maaş hesaplama</li>
-                                <li>Bordro oluşturma ve yazdırma</li>
-                                <li>Özlük dosyası takibi</li>
-                                <li>Raporlama ve analiz</li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-            </div>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Profesyonel Deneyim</h2>
-            <div class="timeline">
-                <article class="timeline-item">
-                    <div class="timeline-date">Ekim 2024 - Ocak 2025</div>
-                    <div class="timeline-content">
-                        <h3>Ürün Yönetimi Analisti Stajyeri</h3>
-                        <h4>İstikbal Mobilya A.Ş.</h4>
-                        <p>Python kullanarak otomatik veri raporlama süreçleri geliştirdim. Microsoft SQL Server (MSSQL) ile veritabanı yönetimi ve sorguları gerçekleştirdim.</p>
-                        <ul>
-                            <li>Microsoft Power BI ile etkileşimli ve anlam veren raporlar ve dashboardlar oluşturdum</li>
-                            <li>Ürün yönetimi takımı ile yakın çalışarak zamanında ve doğru veri öngörüleri sundum</li>
-                            <li>Veri analizi ve görselleştirme konularında deneyim kazandım</li>
-                        </ul>
-                    </div>
-                </article>
-                <article class="timeline-item">
-                    <div class="timeline-date">Temmuz 2024 - Eylül 2024</div>
-                    <div class="timeline-content">
-                        <h3>Stajyer</h3>
-                        <h4>Mobius Yazılım Çözümleri</h4>
-                        <p>Veritabanı yönetimi ve raporlama odaklı proje takımının bir parçası olarak çalıştım.</p>
-                        <ul>
-                            <li>Otomotiv sektörü ile ilgili raporlar geliştirdim ve sürdürdüm</li>
-                            <li>Microsoft SQL Server ve Power BI kullanarak veri analizi ve görselleştirme yaptım</li>
-                            <li>Proje takım çalışması deneyimi kazandım</li>
-                        </ul>
-                    </div>
-                </article>
-                <article class="timeline-item">
-                    <div class="timeline-date">Mart 2023 - Aralık 2023</div>
-                    <div class="timeline-content">
-                        <h3>Veri Analisti Stajyeri</h3>
-                        <h4>B&B Bilişim</h4>
-                        <p>Microsoft Power BI ve SQL kullanarak veri dashboardları geliştirme ve temel veri analizi yapma konularında yardımcı oldum.</p>
-                        <ul>
-                            <li>Veri analizi ve raporlama süreçlerinde pratik deneyim kazandım</li>
-                            <li>SQL sorguları yazma ve veritabanı yönetimi konularında beceri geliştirdim</li>
-                            <li>Power BI ile interaktif dashboard geliştirme deneyimi edindim</li>
-                        </ul>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2 class="section-title">Eğitim</h2>
-            <div class="education-content">
-                <article class="education-item">
-                    <div class="education-info">
-                        <h3>Bilgisayar Mühendisliği Lisans</h3>
-                        <h4>Kayseri Üniversitesi</h4>
-                        <p class="education-date">2021 - Devam Ediyor</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications">
-        <div class="container">
-            <h2 class="section-title">Sertifikalar</h2>
-            <div class="certifications-grid">
-                <article class="certification-card">
-                    <div class="certification-content">
-                        <h3>Yazılım Geliştirme Bootcamp</h3>
-                        <p class="certification-date">23 Ocak - 23 Şubat 2023</p>
-                        <p class="certification-id">Sertifika ID: 69222865317821</p>
-                        <p>Yazılım geliştirme temelleri ve en iyi uygulamalara odaklanan kapsamlı bir eğitim programını tamamladım.</p>
-                    </div>
-                </article>
-                <article class="certification-card">
-                    <div class="certification-content">
-                        <h3>İleri Düzey SQL Pro Workshop</h3>
-                        <p class="certification-date">1 Eylül - 9 Eylül 2024</p>
-                        <p class="certification-id">Sertifika ID: 52610565375933</p>
-                        <p>Karmaşık sorgular, optimizasyon teknikleri ve veritabanı yönetimini kapsayan ileri düzey SQL workshop'unu tamamladım.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">İletişim</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Benimle İletişime Geçin</h3>
-                    <p>Projeleriniz için işbirliği yapmaktan mutluluk duyarım. Benimle aşağıdaki kanallardan iletişime geçebilirsiniz.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
-                            <span>alperentoker149@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone" aria-hidden="true"></i>
-                            <span>+90 505 139 25 30</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                            <span>Kayseri</span>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/alperentoker/" target="_blank" title="LinkedIn" aria-label="LinkedIn Profilim" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                        <a href="https://github.com/Mth0Ne" target="_blank" title="GitHub" aria-label="GitHub Profilim" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i></a>
-                        <a href="https://www.instagram.com/alperenntoker/" target="_blank" title="Instagram" aria-label="Instagram Profilim" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name" class="sr-only">Adınız</label>
-                            <input type="text" id="name" name="name" placeholder="Adınız" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="sr-only">E-posta Adresiniz</label>
-                            <input type="email" id="email" name="email" placeholder="E-posta Adresiniz" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="sr-only">Konu</label>
-                            <input type="text" id="subject" name="subject" placeholder="Konu" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="sr-only">Mesajınız</label>
-                            <textarea id="message" name="message" placeholder="Mesajınız" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Mesaj Gönder</button>
-                    </form>
-                </div>
-            </div>
+    <section id="contact" class="contact-section" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-header">
+          <div class="section-number">03</div>
+          <div class="section-title-group">
+            <h2 id="contact-title" class="section-title">İletişim</h2>
+            <p class="section-subtitle">Projeler, iş fırsatları veya işbirlikleri için benimle iletişime geçebilirsiniz</p>
+          </div>
         </div>
+        
+        <div class="contact-content">
+          <div class="contact-intro">
+            <p class="contact-description">
+              Yazılım geliştirme, veri analizi projeleri veya teknoloji üzerine konuşmak için 
+              bana aşağıdaki kanallardan ulaşabilirsiniz.
+            </p>
+          </div>
+          
+          <div class="contact-methods">
+            <a href="mailto:alperentoker149@gmail.com" class="contact-method primary-contact">
+              <div class="method-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="L22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="method-content">
+                <span class="method-label">E-posta İle İletişim</span>
+                <span class="method-value">alperentoker149@gmail.com</span>
+                <span class="method-description">En hızlı yanıt için tercih edilen kanal</span>
+              </div>
+            </a>
+            
+            <div class="contact-social-methods">
+              <a href="https://linkedin.com/in/alperentoker" target="_blank" class="contact-method">
+                <div class="method-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M16 8A6 6 0 0 1 22 14V21H18V14A2 2 0 0 0 16 12A2 2 0 0 0 14 14V21H10V14A6 6 0 0 1 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="method-content">
+                  <span class="method-label">LinkedIn</span>
+                  <span class="method-value">Profesyonel ağ ve CV</span>
+                </div>
+              </a>
+              
+              <a href="https://github.com/Mth0Ne" target="_blank" class="contact-method">
+                <div class="method-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 19C4 20.5 4 16.5 2 16M22 16V22H18V16.5C18 15.5 17.5 15 16.5 15H15.5C14.5 15 14 15.5 14 16.5V22H10V16C10 14 8 12 8 12S10 10 10 8C10 7 9 6 8 6C7 6 6 7 6 8C6 9 7 10 8 10C8 10 6 12 6 14V22H2V16C2 14 4 12 6 12C8 12 10 14 10 16V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>  
+                  </svg>
+                </div>
+                <div class="method-content">
+                  <span class="method-label">GitHub</span>
+                  <span class="method-value">Projeler ve kod örnekleri</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          
+          <div class="contact-footer">
+            <p class="response-time">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              E-posta mesajlarına genellikle 24 saat içinde yanıt veriyorum
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; <span id="year">2025</span> Alperen Toker. Tüm hakları saklıdır.</p>
-            </div>
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <p>&copy; 2025 Alperen Toker</p>
+          <p class="footer-tagline">Teknoloji ile değer yaratmak</p>
         </div>
-    </footer>
+        <div class="footer-social">
+          <a href="https://github.com/Mth0Ne" target="_blank" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/alperentoker" target="_blank" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="mailto:alperentoker149@gmail.com" aria-label="E-posta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <script src="script.js"></script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 </html> 
