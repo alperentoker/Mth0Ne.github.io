@@ -19,7 +19,7 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Ana navigasyon">
         <div class="nav-container">
             <div class="nav-logo">
                 <span class="logo-text">AT</span>
@@ -34,11 +34,11 @@
                 <li><a href="#certifications" class="nav-link">Sertifikalar</a></li>
                 <li><a href="#contact" class="nav-link">İletişim</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
@@ -60,64 +60,34 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         İletişime Geç
                     </a>
                     <a href="#experience" class="btn btn-secondary">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
                         Deneyimlerimi Gör
                     </a>
                     <a href="/Alperen_Toker_CV.pdf" download class="btn btn-secondary">
-                        <i class="fas fa-download"></i>
+                        <i class="fas fa-download" aria-hidden="true"></i>
                         CV'mi İndir
                     </a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-number static-stat">2+</span>
+                        <span class="stat-number static-stat" aria-label="2 artı yıl deneyim">2+</span>
                         <span class="stat-label">Yıl Deneyim</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number static-stat">3</span>
+                        <span class="stat-number static-stat" aria-label="3 şirket">3</span>
                         <span class="stat-label">Şirket</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number static-stat">2</span>
+                        <span class="stat-number static-stat" aria-label="2 sertifika">2</span>
                         <span class="stat-label">Sertifika</span>
                     </div>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <span class="btn-close"></span>
-                            <span class="btn-minimize"></span>
-                            <span class="btn-maximize"></span>
-                        </div>
-                        <span class="terminal-title">alperen@dev:~$</span>
-                    </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="prompt">$</span>
-                            <span class="command">cat about_me.json</span>
-                        </div>
-                        <div class="terminal-output">
-                            <pre>{
-  "name": "Alperen Toker",
-  "role": "Software Developer",
-  "skills": ["C#", "Python", "SQL", "Power BI"],
-  "status": "available_for_work",
-  "passion": "data_analysis & development"
-}</pre>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="prompt">$</span>
-                            <span class="typing-cursor">|</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -138,15 +108,15 @@
                     </p>
                     <div class="about-stats">
                         <div class="stat">
-                            <span class="stat-number static-stat">2+</span>
+                            <span class="stat-number static-stat" aria-label="2 artı yıl deneyim">2+</span>
                             <span class="stat-label">Yıl Deneyim</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number static-stat">3</span>
+                            <span class="stat-number static-stat" aria-label="3 şirket deneyimi">3</span>
                             <span class="stat-label">Şirket Deneyimi</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number static-stat">2</span>
+                            <span class="stat-number static-stat" aria-label="2 sertifika">2</span>
                             <span class="stat-label">Sertifika</span>
                         </div>
                     </div>
@@ -283,12 +253,12 @@
         <div class="container">
             <h2 class="section-title">Projelerim</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <article class="project-card">
                     <div class="project-header">
                         <h3>SmartBist - Akıllı Borsa İstanbul Portföy Yönetim Sistemi</h3>
                         <div class="project-links">
-                            <a href="https://github.com/Mth0Ne/YATIRIM" target="_blank" aria-label="SmartBist GitHub Repository">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com/Mth0Ne/YATIRIM" target="_blank" aria-label="SmartBist GitHub Repository" rel="noopener">
+                                <i class="fab fa-github" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -316,14 +286,14 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </article>
                 
-                <div class="project-card">
+                <article class="project-card">
                     <div class="project-header">
                         <h3>Personel Maaş Yönetim Sistemi</h3>
                         <div class="project-links">
-                            <a href="https://github.com/Mth0Ne/PayrollManagementSys" target="_blank" aria-label="Personel Maaş Sistemi GitHub Repository">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com/Mth0Ne/PayrollManagementSys" target="_blank" aria-label="Personel Maaş Sistemi GitHub Repository" rel="noopener">
+                                <i class="fab fa-github" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -351,7 +321,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -361,7 +331,7 @@
         <div class="container">
             <h2 class="section-title">Profesyonel Deneyim</h2>
             <div class="timeline">
-                <div class="timeline-item">
+                <article class="timeline-item">
                     <div class="timeline-date">Ekim 2024 - Ocak 2025</div>
                     <div class="timeline-content">
                         <h3>Ürün Yönetimi Analisti Stajyeri</h3>
@@ -373,8 +343,8 @@
                             <li>Veri analizi ve görselleştirme konularında deneyim kazandım</li>
                         </ul>
                     </div>
-                </div>
-                <div class="timeline-item">
+                </article>
+                <article class="timeline-item">
                     <div class="timeline-date">Temmuz 2024 - Eylül 2024</div>
                     <div class="timeline-content">
                         <h3>Stajyer</h3>
@@ -386,8 +356,8 @@
                             <li>Proje takım çalışması deneyimi kazandım</li>
                         </ul>
                     </div>
-                </div>
-                <div class="timeline-item">
+                </article>
+                <article class="timeline-item">
                     <div class="timeline-date">Mart 2023 - Aralık 2023</div>
                     <div class="timeline-content">
                         <h3>Veri Analisti Stajyeri</h3>
@@ -399,7 +369,7 @@
                             <li>Power BI ile interaktif dashboard geliştirme deneyimi edindim</li>
                         </ul>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -409,13 +379,13 @@
         <div class="container">
             <h2 class="section-title">Eğitim</h2>
             <div class="education-content">
-                <div class="education-item">
+                <article class="education-item">
                     <div class="education-info">
                         <h3>Bilgisayar Mühendisliği Lisans</h3>
                         <h4>Kayseri Üniversitesi</h4>
                         <p class="education-date">2021 - Devam Ediyor</p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -425,22 +395,22 @@
         <div class="container">
             <h2 class="section-title">Sertifikalar</h2>
             <div class="certifications-grid">
-                <div class="certification-card">
+                <article class="certification-card">
                     <div class="certification-content">
                         <h3>Yazılım Geliştirme Bootcamp</h3>
                         <p class="certification-date">23 Ocak - 23 Şubat 2023</p>
                         <p class="certification-id">Sertifika ID: 69222865317821</p>
                         <p>Yazılım geliştirme temelleri ve en iyi uygulamalara odaklanan kapsamlı bir eğitim programını tamamladım.</p>
                     </div>
-                </div>
-                <div class="certification-card">
+                </article>
+                <article class="certification-card">
                     <div class="certification-content">
                         <h3>İleri Düzey SQL Pro Workshop</h3>
                         <p class="certification-date">1 Eylül - 9 Eylül 2024</p>
                         <p class="certification-id">Sertifika ID: 52610565375933</p>
                         <p>Karmaşık sorgular, optimizasyon teknikleri ve veritabanı yönetimini kapsayan ileri düzey SQL workshop'unu tamamladım.</p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -455,36 +425,40 @@
                     <p>Projeleriniz için işbirliği yapmaktan mutluluk duyarım. Benimle aşağıdaki kanallardan iletişime geçebilirsiniz.</p>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             <span>alperentoker149@gmail.com</span>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
                             <span>+90 505 139 25 30</span>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <span>Kayseri</span>
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/alperentoker/" target="_blank" title="LinkedIn" aria-label="LinkedIn Profilim"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Mth0Ne" target="_blank" title="GitHub" aria-label="GitHub Profilim"><i class="fab fa-github"></i></a>
-                        <a href="https://www.instagram.com/alperenntoker/" target="_blank" title="Instagram" aria-label="Instagram Profilim"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/alperentoker/" target="_blank" title="LinkedIn" aria-label="LinkedIn Profilim" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="https://github.com/Mth0Ne" target="_blank" title="GitHub" aria-label="GitHub Profilim" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/alperenntoker/" target="_blank" title="Instagram" aria-label="Instagram Profilim" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
+                            <label for="name" class="sr-only">Adınız</label>
                             <input type="text" id="name" name="name" placeholder="Adınız" required>
                         </div>
                         <div class="form-group">
+                            <label for="email" class="sr-only">E-posta Adresiniz</label>
                             <input type="email" id="email" name="email" placeholder="E-posta Adresiniz" required>
                         </div>
                         <div class="form-group">
+                            <label for="subject" class="sr-only">Konu</label>
                             <input type="text" id="subject" name="subject" placeholder="Konu" required>
                         </div>
                         <div class="form-group">
+                            <label for="message" class="sr-only">Mesajınız</label>
                             <textarea id="message" name="message" placeholder="Mesajınız" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Mesaj Gönder</button>
