@@ -3,18 +3,10 @@ if (location.protocol !== 'https:' && location.hostname !== 'localhost' && locat
     location.replace('https:' + window.location.href.substring(window.location.protocol.length));
 }
 
-// Fix viewport height for mobile browsers
-function setViewportHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-// Set initial viewport height
-setViewportHeight();
-
-// Update on resize and orientation change
-window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', setViewportHeight);
+// Simple viewport fix
+window.addEventListener('resize', () => {
+    document.documentElement.style.height = window.innerHeight + 'px';
+});
 
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -849,47 +841,15 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Utility functions
+// Simple utility
 const utils = {
-    // Debounce function
     debounce: (func, wait) => {
         let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
+        return function(...args) {
             clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
+            timeout = setTimeout(() => func.apply(this, args), wait);
         };
-    },
-    
-    // Check if element is in viewport
-    isInViewport: (element) => {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    },
-    
-    // Random number generator
-    random: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
-    
-    // Generate random color
-    randomColor: () => `hsl(${Math.random() * 360}, 70%, 50%)`,
-    
-    // Check if device supports touch
-    isTouchDevice: () => 'ontouchstart' in window || navigator.maxTouchPoints > 0,
-    
-    // Get viewport dimensions
-    getViewportSize: () => ({
-        width: Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0),
-        height: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-    })
+    }
 };
 
-// Export utils for potential use in other scripts
 window.utils = utils; 
