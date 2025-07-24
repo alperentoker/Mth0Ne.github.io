@@ -588,8 +588,13 @@ section:nth-child(even) {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
     align-items: stretch;
+    justify-items: center;
     position: relative;
     z-index: 2;
+}
+
+.about-image {
+    max-width: 100%;
 }
 
 .about-text {
@@ -688,7 +693,7 @@ section:nth-child(even) {
     background: var(--neutral-darkest);
     border: 1px solid rgba(100, 255, 218, 0.25);
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    /* overflow: hidden; */
     box-shadow: var(--shadow-xl);
     backdrop-filter: blur(20px);
     animation: fadeInUp 1s ease-out 0.4s both;
@@ -709,6 +714,8 @@ section:nth-child(even) {
     gap: var(--spacing-sm);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    border-top-left-radius: calc(var(--radius-lg) - 1px);
+    border-top-right-radius: calc(var(--radius-lg) - 1px);
 }
 
 .code-header::before {
@@ -1435,11 +1442,6 @@ section:nth-child(even) {
     }
 }
 
-/* Prevent horizontal overflow on all screen sizes */
-* {
-    max-width: 100%;
-}
-
 img, 
 video, 
 iframe, 
@@ -1447,11 +1449,6 @@ object,
 embed {
     max-width: 100%;
     height: auto;
-}
-
-pre {
-    overflow-x: auto;
-    max-width: 100%;
 }
 
 /* Ensure no elements cause horizontal scroll */
