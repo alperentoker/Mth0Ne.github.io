@@ -3,6 +3,19 @@ if (location.protocol !== 'https:' && location.hostname !== 'localhost' && locat
     location.replace('https:' + window.location.href.substring(window.location.protocol.length));
 }
 
+// Fix viewport height for mobile browsers
+function setViewportHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Set initial viewport height
+setViewportHeight();
+
+// Update on resize and orientation change
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', setViewportHeight);
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     

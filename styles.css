@@ -64,11 +64,17 @@
     
     /* Touch Targets - WCAG Compliance */
     --touch-target-min: 44px;
+    
+    /* Viewport Heights */
+    --vh: 1vh;
 }
 
 html {
     scroll-behavior: smooth;
     font-size: 16px; /* Base font size for consistent scaling */
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -80,6 +86,8 @@ body {
     position: relative;
     font-size: var(--font-size-base);
     font-weight: 400;
+    margin: 0;
+    padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* Prevent text size adjustment on orientation change */
@@ -303,13 +311,15 @@ body::before {
 
 /* Enhanced Hero Section - Mobile First */
 .hero {
-    min-height: 100vh;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100); /* Fallback to custom property */
     display: flex;
     align-items: center;
-    padding: calc(60px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+    padding: 0 var(--spacing-md);
     position: relative;
     z-index: 5;
     background: transparent;
+    box-sizing: border-box;
 }
 
 .hero-content {
@@ -320,6 +330,8 @@ body::before {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    padding-top: calc(60px + var(--spacing-md));
+    padding-bottom: var(--spacing-md);
 }
 
 .hero-main {
@@ -541,6 +553,13 @@ section {
     background: transparent;
     width: 100%;
     overflow-x: hidden;
+    margin: 0;
+}
+
+/* Hero section özel styling */
+#home {
+    padding: 0;
+    margin: 0;
 }
 
 section:nth-child(even) {
@@ -613,6 +632,7 @@ section > .container {
     background: rgba(10, 25, 47, 0.6);
     position: relative;
     overflow: hidden;
+    margin-top: 0;
 }
 
 .about::before {
@@ -1467,12 +1487,9 @@ section > .container {
         display: none;
     }
     
-    .hero {
-        padding: calc(70px + var(--spacing-xl)) 0 var(--spacing-xl);
-    }
-    
     .hero-content {
         max-width: 1000px;
+        padding-top: calc(70px + var(--spacing-lg));
     }
     
     .hero-main {
