@@ -36,6 +36,3 @@ Bu repository, Alperen Toker'in kişisel web sitesinin kaynak kodlarını içerm
 
 ## 📄 Lisans
 © 2025 Alperen Toker. Tüm hakları saklıdır.
-
----
-❤️ ile İstanbul'da tasarlandı ve geliştirildi. 
